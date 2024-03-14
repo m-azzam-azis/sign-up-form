@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Sign Up Form</title>
+</head>
+<body> 
+
+  <section class="left-side">
+    <div class="header-container">
+      <img src="images/cube.jpg" alt="cube logo" width="100px" height="100px">
+      <h1>Cubix</h1>
+    </div>
+  </section>
+
+  <section class="right-side">
+    <div class="text-container container">
+      <p>This is not a real online service! You know you need something
+        like this in your life to help you realize your deepest dreams.
+        Sign up now to get started.</p>
+        <br>
+      <p>You know you want to.</p>
+    </div>
+    <div class="form-container container">
+      <form action="" id="signup-form">
+        <h2>Let's Do This!</h2>
+        <div class="input-container">
+
+          <div class="input-field">
+            <label for="first-name">FIRST NAME</label>
+            <input id="first-name" type="text" required>
+          </div>
+
+          <div class="input-field">
+            <label for="last-name">LAST NAME</label>
+            <input id="last-name" type="text" required>
+          </div>
+
+          <div class="input-field">
+            <label for="email">EMAIL</label>
+            <input id="email" type="email" required>
+          </div>
+
+          <div class="input-field">
+            <label for="phone-number">PHONE NUMBER</label>
+            <input id="phone-number" type="tel" pattern="[0-9]+" required>
+          </div>
+
+          <div class="input-field">
+            <label for="password" >PASSWORD</label>
+            <input id="password" type="password" required class="error">
+            <label for="password" id="no-match">*password doesn't match</label>
+          </div>
+
+          <div class="input-field">
+            <label for="confirm-password" >CONFIRM PASSWORD</label>
+            <input id="confirm-password" type="password" required class="error">
+          </div>
+
+        </div>
+
+      </form>
+    </div>
+    <div class="submit-container container">
+      <button type="submit" form="signup-form" id="submit-button">Create an Account</button>
+      <p>Already have an account? <a href="/">Log in</a></p>
+    </div>
+
+  </section>
+  <script>
+    const pw1 = document.getElementById('password');
+    const pw2 = document.getElementById('confirm-password');
+    const submitButton = document.getElementById('submit-button');
+    const noMatch = document.getElementById('no-match');
+
+    function validatePassword() {
+      let pwMatch = pw1.value === pw2.value;
+      if (pwMatch) {
+        pw1.classList.remove('error');
+        pw2.classList.remove('error');
+        noMatch.style.display = 'none';
+      } else {
+        pw1.classList.add('error');
+        pw2.classList.add('error');
+        noMatch.style.display = 'block';
+      }
+    }
+
+    pw1.addEventListener('input', validatePassword);
+    pw2.addEventListener('input', validatePassword);
+
+    submitButton.addEventListener('click', (e) => {
+      if (pw1.value !== pw2.value) {
+        e.preventDefault();
+        alert("Passwords don't match");
+      }
+    });
+  </script>
+</body>
+</html>
